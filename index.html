@@ -3,425 +3,983 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+
     <title>Ikatan Pelajar Muhammadiyah - SMAM 8 SUKODADI</title>
 
-    <!-- Google font -->
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
+
+        /* =========================================================
+           WARNA WEBSITE
+           ========================================================= */
+
         :root{
             --bg-yellow:#FFEB3B;
             --bg-white:#ffffff;
             --bg-black:#111111;
-            --accent:#f9a825; /* darker yellow */
-            --card-bg: rgba(255,255,255,0.9);
-            --glass: rgba(255,255,255,0.85);
+            --accent:#f9a825;
+
+            --card-bg:rgba(255,255,255,0.9);
             --muted:#444;
+
+            --purple:#6c5ce7;
+            --purple-light:#a29bfe;
         }
 
-        /* Page background: layered stripes of yellow, white and black */
+
+        /* =========================================================
+           DASAR WEBSITE
+           ========================================================= */
+
+        *{
+            box-sizing:border-box;
+        }
+
         body{
             margin:0;
-            font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            color: #111;
+
+            font-family:
+                "Poppins",
+                system-ui,
+                -apple-system,
+                "Segoe UI",
+                Roboto,
+                "Helvetica Neue",
+                Arial;
+
+            color:#111;
+
             background:
-                linear-gradient(180deg, var(--bg-yellow) 0%, var(--bg-yellow) 45%,
-                                         var(--bg-white) 45%, var(--bg-white) 85%,
-                                         var(--bg-black) 85%, var(--bg-black) 100%);
+                linear-gradient(
+                    180deg,
+                    var(--bg-yellow) 0%,
+                    var(--bg-yellow) 45%,
+
+                    var(--bg-white) 45%,
+                    var(--bg-white) 85%,
+
+                    var(--bg-black) 85%,
+                    var(--bg-black) 100%
+                );
+
             min-height:100vh;
+
             -webkit-font-smoothing:antialiased;
             -moz-osx-font-smoothing:grayscale;
         }
+
+
+        /* =========================================================
+           HEADER
+           ========================================================= */
 
         header{
             display:flex;
             align-items:center;
             justify-content:space-between;
+
             gap:12px;
+
             padding:18px 22px;
+
             max-width:1100px;
+
             margin:18px auto;
-            background: linear-gradient(90deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.85),
+                    rgba(255,255,255,0.6)
+                );
+
             border-radius:12px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+
+            box-shadow:
+                0 6px 18px rgba(0,0,0,0.12);
         }
 
-        .brand-left, .brand-right{
+
+        .brand-left,
+        .brand-right{
             display:flex;
             align-items:center;
             gap:12px;
         }
 
-        .logo {
+
+        .logo{
             width:72px;
             height:72px;
+
             object-fit:cover;
+
             border-radius:12px;
-            background: #fff;
+
+            background:#fff;
+
             padding:6px;
-            box-shadow:0 6px 12px rgba(0,0,0,0.12);
+
+            box-shadow:
+                0 6px 12px rgba(0,0,0,0.12);
         }
 
-        .title {
+
+        .title{
             text-align:center;
             flex:1;
         }
 
+
         .title h1{
             margin:0;
+
             font-size:20px;
-            color: #111;
+
+            color:#111;
         }
+
+
         .title p{
             margin:2px 0 0;
+
             font-size:13px;
+
             color:var(--muted);
         }
 
-        main{
-            max-width:1100px;
-            margin:18px auto 60px;
-            padding:12px;
-        }
 
-        /* Struktur inti */
-        .card {
-            background: var(--card-bg);
-            border-radius:12px;
-            padding:16px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            margin-bottom:18px;
-        }
-
-        .grid-2 {
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            gap:14px;
-            align-items:start;
-        }
-
-        table.core {
-            width:100%;
-            border-collapse:collapse;
-            font-size:15px;
-        }
-        table.core th, table.core td {
-            padding:10px;
-            text-align:left;
-            border-bottom:1px solid rgba(0,0,0,0.06);
-        }
-        table.core th {
-            background:transparent;
-            color:#222;
-            width:40%;
-        }
-
-        /* Bidang list */
-        .bidang-list {
-            display:flex;
-            flex-wrap:wrap;
-            gap:12px;
-            justify-content:center;
-            margin:8px 0 6px;
-        }
-
-        .btn-bidang {
-            background: linear-gradient(180deg, #6c5ce7 0%, #a29bfe 100%);
-            color:#fff;
-            padding:10px 14px;
-            border-radius:10px;
-            border: none;
-            cursor:pointer;
-            font-weight:600;
-            box-shadow:0 8px 18px rgba(108,92,231,0.18);
-            transition:transform .18s ease, box-shadow .18s ease;
-        }
-        .btn-bidang:hover{
-            transform:translateY(-4px);
-            box-shadow:0 12px 24px rgba(108,92,231,0.22);
-        }
-
-        /* Area dimana detail bidang muncul */
-        .bidang-detail {
-            margin-top:16px;
-        }
-
-        .detail-card {
-            display:none; /* shown by JS */
-            background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
-            border-radius:12px;
-            padding:14px;
-            box-shadow:0 8px 20px rgba(0,0,0,0.08);
-        }
-
-        .detail-card.active {
-            display:block;
-            animation: fadeUp .35s ease;
-        }
-
-        @keyframes fadeUp{
-            from { opacity:0; transform: translateY(8px); }
-            to { opacity:1; transform: translateY(0); }
-        }
-
-        .detail-card h3{
-            margin:0 0 8px 0;
-            color:#222;
-        }
-
-        .role-row {
-            display:flex;
-            gap:12px;
-            align-items:flex-start;
-            flex-wrap:wrap;
-        }
-
-        .role {
-            flex:1 1 240px;
-            background: #fff;
-            border-radius:10px;
-            padding:10px;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.06);
-        }
-        .role h4 {
-            margin:0 0 6px 0;
+        .address{
             font-size:14px;
-            color:#6c5ce7;
-        }
-        .role p {
-            margin:0;
-            font-size:14px;
-            color:#333;
-            line-height:1.4;
-        }
 
-        /* anggota list */
-        .anggota-list {
-            margin-top:8px;
-            padding:0;
-            list-style:none;
-        }
-        .anggota-list li{
-            font-size:14px;
-            color:#222;
-            margin:6px 0;
-        }
-
-        /* footer / alamat */
-        .address {
-            font-size:14px;
             color:#111;
+
             margin:6px 0 0;
         }
 
-        footer.site {
+
+        /* =========================================================
+           MAIN
+           ========================================================= */
+
+        main{
             max-width:1100px;
-            margin:22px auto 40px;
+
+            margin:18px auto 60px;
+
             padding:12px;
+        }
+
+
+        /* =========================================================
+           CARD
+           ========================================================= */
+
+        .card{
+            background:var(--card-bg);
+
+            border-radius:12px;
+
+            padding:16px;
+
+            box-shadow:
+                0 6px 18px rgba(0,0,0,0.08);
+
+            margin-bottom:18px;
+        }
+
+
+        /* =========================================================
+           STRUKTUR INTI
+           ========================================================= */
+
+        .grid-2{
+            display:grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:14px;
+
+            align-items:start;
+        }
+
+
+        table.core{
+            width:100%;
+
+            border-collapse:collapse;
+
+            font-size:15px;
+        }
+
+
+        table.core th,
+        table.core td{
+            padding:10px;
+
+            text-align:left;
+
+            border-bottom:
+                1px solid rgba(0,0,0,0.06);
+        }
+
+
+        table.core th{
+            background:transparent;
+
+            color:#222;
+
+            width:40%;
+        }
+
+
+        /* =========================================================
+           BIDANG
+           ========================================================= */
+
+        .bidang-list{
+            display:flex;
+
+            flex-wrap:wrap;
+
+            gap:12px;
+
+            justify-content:center;
+
+            margin:8px 0 6px;
+        }
+
+
+        .btn-bidang{
+            background:
+                linear-gradient(
+                    180deg,
+                    var(--purple) 0%,
+                    var(--purple-light) 100%
+                );
+
+            color:#fff;
+
+            padding:10px 14px;
+
+            border-radius:10px;
+
+            border:none;
+
+            cursor:pointer;
+
+            font-weight:600;
+
+            box-shadow:
+                0 8px 18px rgba(108,92,231,0.18);
+
+            transition:
+                transform .18s ease,
+                box-shadow .18s ease;
+        }
+
+
+        .btn-bidang:hover{
+            transform:translateY(-4px);
+
+            box-shadow:
+                0 12px 24px rgba(108,92,231,0.22);
+        }
+
+
+        .bidang-detail{
+            margin-top:16px;
+        }
+
+
+        .detail-card{
+            display:none;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,0.95),
+                    rgba(255,255,255,0.9)
+                );
+
+            border-radius:12px;
+
+            padding:14px;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.08);
+        }
+
+
+        .detail-card.active{
+            display:block;
+
+            animation:
+                fadeUp .35s ease;
+        }
+
+
+        @keyframes fadeUp{
+
+            from{
+                opacity:0;
+                transform:translateY(8px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+
+        .detail-card h3{
+            margin:0 0 8px 0;
+
+            color:#222;
+        }
+
+
+        .role-row{
+            display:flex;
+
+            gap:12px;
+
+            align-items:flex-start;
+
+            flex-wrap:wrap;
+        }
+
+
+        .role{
+            flex:1 1 240px;
+
+            background:#fff;
+
+            border-radius:10px;
+
+            padding:10px;
+
+            box-shadow:
+                0 6px 14px rgba(0,0,0,0.06);
+        }
+
+
+        .role h4{
+            margin:0 0 6px 0;
+
+            font-size:14px;
+
+            color:var(--purple);
+        }
+
+
+        .role p{
+            margin:0;
+
+            font-size:14px;
+
+            color:#333;
+
+            line-height:1.4;
+        }
+
+
+        /* =========================================================
+           ANGGOTA
+           ========================================================= */
+
+        .anggota-list{
+            margin-top:8px;
+
+            padding:0;
+
+            list-style:none;
+        }
+
+
+        .anggota-list li{
+            font-size:14px;
+
+            color:#222;
+
+            margin:6px 0;
+        }
+
+
+        /* =========================================================
+           TOMBOL GALERI
+           ========================================================= */
+
+        .galeri-button-wrapper{
+            margin-top:18px;
+
+            display:flex;
+
+            justify-content:center;
+        }
+
+
+        .btn-galeri{
+            background:
+                linear-gradient(
+                    180deg,
+                    #111111 0%,
+                    #292929 100%
+                );
+
+            color:white;
+
+            padding:11px 18px;
+
+            border:none;
+
+            border-radius:10px;
+
+            cursor:pointer;
+
+            font-family:inherit;
+
+            font-weight:600;
+
+            font-size:14px;
+
+            box-shadow:
+                0 7px 16px rgba(0,0,0,0.15);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        .btn-galeri:hover{
+            transform:translateY(-3px);
+
+            box-shadow:
+                0 10px 22px rgba(0,0,0,0.22);
+        }
+
+
+        /* =========================================================
+           SISTEM HALAMAN
+           ========================================================= */
+
+        .page{
+            display:none;
+        }
+
+
+        .page.active{
+            display:block;
+
+            animation:
+                fadeUp .35s ease;
+        }
+
+
+        /* =========================================================
+           GALERI
+           ========================================================= */
+
+        .gallery-title{
+            display:flex;
+
+            align-items:center;
+
+            justify-content:space-between;
+
+            gap:12px;
+
+            margin-bottom:5px;
+        }
+
+
+        .gallery-title h2{
+            margin:0;
+
+            color:#222;
+        }
+
+
+        .gallery-description{
+            margin:4px 0 20px;
+
+            color:var(--muted);
+
+            font-size:14px;
+        }
+
+
+        .btn-kembali{
+            background:
+                linear-gradient(
+                    180deg,
+                    var(--purple) 0%,
+                    var(--purple-light) 100%
+                );
+
+            color:white;
+
+            padding:9px 14px;
+
+            border:none;
+
+            border-radius:9px;
+
+            cursor:pointer;
+
+            font-family:inherit;
+
+            font-weight:600;
+
+            font-size:13px;
+
+            white-space:nowrap;
+        }
+
+
+        /* =========================================================
+           GRID FOTO
+           
+           FOTO HORIZONTAL 4 : 3
+           ========================================================= */
+
+        .gallery-grid{
+            display:grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:15px;
+        }
+
+
+        .gallery-item{
+            background:#fff;
+
+            padding:7px;
+
+            border-radius:12px;
+
+            box-shadow:
+                0 6px 18px rgba(0,0,0,0.09);
+
+            cursor:pointer;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+
+        .gallery-item:hover{
+            transform:translateY(-5px);
+
+            box-shadow:
+                0 12px 25px rgba(0,0,0,0.15);
+        }
+
+
+        /*
+            4 : 3 = FOTO HORIZONTAL
+        */
+
+        .gallery-item img{
+            width:100%;
+
+            aspect-ratio:4 / 3;
+
+            object-fit:cover;
+
+            border-radius:8px;
+
+            display:block;
+        }
+
+
+        .gallery-caption{
+            padding:9px 5px 4px;
+
+            font-size:13px;
+
+            font-weight:600;
+
+            color:#222;
+        }
+
+
+        /* =========================================================
+           LIGHTBOX FOTO
+           
+           Ketika foto diklik, foto menjadi besar.
+           ========================================================= */
+
+        .lightbox{
+            display:none;
+
+            position:fixed;
+
+            z-index:9999;
+
+            inset:0;
+
+            background:
+                rgba(0,0,0,0.9);
+
+            align-items:center;
+
+            justify-content:center;
+
+            padding:20px;
+        }
+
+
+        .lightbox.active{
+            display:flex;
+        }
+
+
+        .lightbox img{
+            max-width:95vw;
+
+            max-height:90vh;
+
+            object-fit:contain;
+
+            border-radius:8px;
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.4);
+        }
+
+
+        .lightbox-close{
+            position:absolute;
+
+            top:18px;
+
+            right:22px;
+
+            width:42px;
+
+            height:42px;
+
+            border:none;
+
+            border-radius:50%;
+
+            background:white;
+
+            color:#111;
+
+            font-size:25px;
+
+            cursor:pointer;
+
+            line-height:42px;
+
             text-align:center;
+        }
+
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        footer.site{
+            max-width:1100px;
+
+            margin:22px auto 40px;
+
+            padding:12px;
+
+            text-align:center;
+
             color:#111;
         }
 
-        /* responsive */
+
+        /* =========================================================
+           RESPONSIVE
+           ========================================================= */
+
         @media (max-width:860px){
-            .grid-2 { grid-template-columns: 1fr; }
-            header { flex-direction:column; gap:14px; text-align:center; }
-            .brand-left, .brand-right { justify-content:center; }
+
+            .grid-2{
+                grid-template-columns:1fr;
+            }
+
+            header{
+                flex-direction:column;
+
+                gap:14px;
+
+                text-align:center;
+            }
+
+            .brand-left,
+            .brand-right{
+                justify-content:center;
+            }
+
         }
+
+
+        @media (max-width:700px){
+
+            .gallery-grid{
+                grid-template-columns:
+                    repeat(2,1fr);
+
+                gap:10px;
+            }
+
+            .gallery-title{
+                align-items:flex-start;
+            }
+
+        }
+
+
+        @media (max-width:430px){
+
+            .gallery-grid{
+                grid-template-columns:1fr;
+            }
+
+            .gallery-title{
+                flex-direction:column;
+            }
+
+            .btn-kembali{
+                width:100%;
+            }
+
+        }
+
     </style>
 </head>
+
+
 <body>
+
+
+    <!-- =========================================================
+         HEADER
+         ========================================================= -->
+
     <header role="banner" aria-label="Header Organisasi">
+
         <div class="brand-left">
-            <!-- Ganti file gambar sesuai milikmu -->
-            <img src="smam.png" alt="Logo Sekolah" class="logo" />
+
+            <img
+                src="smam.png"
+                alt="Logo Sekolah"
+                class="logo"
+            />
+
         </div>
 
-        <div class="title" aria-hidden="false">
-            <h1>Ikatan Pelajar Muhammadiyah - SMAM 8 SUKODADI</h1>
-            <p>Periode 2025 / 2026 · Website Resmi Organisasi Sekolah</p>
-            <p class="address">Merjoyo, Sukodadi, Kec. Sukodadi Kab. Lamongan</p>
+
+        <div class="title">
+
+            <h1>
+                Ikatan Pelajar Muhammadiyah - SMAM 8 SUKODADI
+            </h1>
+
+            <p>
+                Periode 2025 / 2026 · Website Resmi Organisasi Sekolah
+            </p>
+
+            <p class="address">
+                Merjoyo, Sukodadi, Kec. Sukodadi Kab. Lamongan
+            </p>
+
         </div>
+
 
         <div class="brand-right">
-            <img src="ipm.png" alt="Logo Ikatan Pelajar Muhammadiyah" class="logo" />
+
+            <img
+                src="ipm.png"
+                alt="Logo Ikatan Pelajar Muhammadiyah"
+                class="logo"
+            />
+
         </div>
+
     </header>
 
-    <main>
-        <!-- Struktur inti organisasi -->
-        <section class="card" aria-labelledby="struktur-heading">
-            <h2 id="struktur-heading" style="margin-top:0;color:#222;">Struktur Inti</h2>
+
+
+    <!-- =========================================================
+         HALAMAN UTAMA
+         ========================================================= -->
+
+    <main id="homePage" class="page active">
+
+
+        <!-- =====================================================
+             STRUKTUR INTI ORGANISASI
+             ===================================================== -->
+
+        <section
+            class="card"
+            aria-labelledby="struktur-heading"
+        >
+
+            <h2
+                id="struktur-heading"
+                style="margin-top:0;color:#222;"
+            >
+                Struktur Inti
+            </h2>
+
 
             <div class="grid-2">
+
+
+                <!-- STRUKTUR INTI -->
+
                 <div>
-                    <table class="core" aria-describedby="struktur-keterangan">
+
+                    <table
+                        class="core"
+                        aria-describedby="struktur-keterangan"
+                    >
+
                         <tbody>
-                            <tr><th>Ketua Umum</th><td>Alfin Sabil Khafifudin</td></tr>
-                            <tr><th>Wakil Ketua</th><td>Trian Ramadhani</td></tr>
-                            <tr><th>Bendahara Umum</th><td>Ayu Romadhoni</td></tr>
-                            <tr><th>Wakil Bendahara 1</th><td>Della Ayu Pramita Sari</td></tr>
-                            <tr><th>Wakil Bendahara 2</th><td>Rosidatul Aprlya Salma</td></tr>
-                            <tr><th>Sekretaris Umum</th><td>Hayfa Aretha Zizi</td></tr>
-                            <tr><th>Wakil Sekretaris Umum</th><td>Ayunda Nasihah</td></tr>
+
+                            <tr>
+                                <th>Ketua Umum</th>
+                                <td>Alfin Sabil Khafifudin</td>
+                            </tr>
+
+                            <tr>
+                                <th>Wakil Ketua</th>
+                                <td>Trian Ramadhani</td>
+                            </tr>
+
+                            <tr>
+                                <th>Bendahara Umum</th>
+                                <td>Ayu Romadhoni</td>
+                            </tr>
+
+                            <tr>
+                                <th>Wakil Bendahara 1</th>
+                                <td>Della Ayu Pramita Sari</td>
+                            </tr>
+
+                            <tr>
+                                <th>Wakil Bendahara 2</th>
+                                <td>Rosidatul Aprlya Salma</td>
+                            </tr>
+
+                            <tr>
+                                <th>Sekretaris Umum</th>
+                                <td>Hayfa Aretha Zizi</td>
+                            </tr>
+
+                            <tr>
+                                <th>Wakil Sekretaris Umum</th>
+                                <td>Ayunda Nasihah</td>
+                            </tr>
+
                         </tbody>
+
                     </table>
-                    <p id="struktur-keterangan" style="margin:10px 0 0;color:var(--muted);font-size:13px;">
+
+
+                    <p
+                        id="struktur-keterangan"
+                        style="
+                            margin:10px 0 0;
+                            color:var(--muted);
+                            font-size:13px;
+                        "
+                    >
                         Kontak organisasi: ipm.smam8skd
                     </p>
+
                 </div>
+
+
+
+                <!-- BIDANG-BIDANG -->
 
                 <div>
-                    <h3 style="margin:0 0 8px 0;color:#222;">Bidang-Bidang</h3>
-                    <div class="bidang-list" role="tablist" aria-label="Daftar Bidang">
-                        <button class="btn-bidang" role="tab" aria-controls="bidang-perkaderan" onclick="showBidang('perkaderan')">Perkaderan</button>
-                        <button class="btn-bidang" role="tab" aria-controls="bidang-pengembangan" onclick="showBidang('pengembangan')">Pengembangan Ilmu Pengetahuan</button>
-                        <button class="btn-bidang" role="tab" aria-controls="bidang-dakwah" onclick="showBidang('dakwah')">Kajian Dakwah Islam</button>
-                        <button class="btn-bidang" role="tab" aria-controls="bidang-seni" onclick="showBidang('seni')">Asosiasi Seni Budaya & Olahraga</button>
+
+                    <h3
+                        style="
+                            margin:0 0 8px 0;
+                            color:#222;
+                        "
+                    >
+                        Bidang-Bidang
+                    </h3>
+
+
+                    <div
+                        class="bidang-list"
+                        role="tablist"
+                        aria-label="Daftar Bidang"
+                    >
+
+                        <button
+                            class="btn-bidang"
+                            role="tab"
+                            aria-controls="bidang-perkaderan"
+                            onclick="showBidang('perkaderan')"
+                        >
+                            Perkaderan
+                        </button>
+
+
+                        <button
+                            class="btn-bidang"
+                            role="tab"
+                            aria-controls="bidang-pengembangan"
+                            onclick="showBidang('pengembangan')"
+                        >
+                            Pengembangan Ilmu Pengetahuan
+                        </button>
+
+
+                        <button
+                            class="btn-bidang"
+                            role="tab"
+                            aria-controls="bidang-dakwah"
+                            onclick="showBidang('dakwah')"
+                        >
+                            Kajian Dakwah Islam
+                        </button>
+
+
+                        <button
+                            class="btn-bidang"
+                            role="tab"
+                            aria-controls="bidang-seni"
+                            onclick="showBidang('seni')"
+                        >
+                            Asosiasi Seni Budaya & Olahraga
+                        </button>
+
                     </div>
 
-                    <div class="bidang-detail" id="bidang-detail" aria-live="polite">
-                        <!-- Perkaderan -->
-                        <div id="perkaderan" class="detail-card" role="tabpanel" aria-hidden="true">
-                            <h3>Bidang Perkaderan</h3>
-                            <div class="role-row">
-                                <div class="role">
-                                    <h4>Ketua Bidang</h4>
-                                    <p>Safitri</p>
-                                </div>
-                                <div class="role">
-                                    <h4>Sekretaris Bidang</h4>
-                                    <p>Silvana Fadilatur Rahma</p>
-                                </div>
-                                <div class="role">
-                                    <h4>Anggota</h4>
-                                    <ul class="anggota-list">
-                                        <li>1. Meliani Hisna Dwi Labibah</li>
-                                        <li>2. M. Raditya Romadhani</li>
-                                        <li>3. Sultan Anda Zuwa Arohman</li>
-                                        <li>4. Debrian Vallent Pradika</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Pengembangan Ilmu Pengetahuan -->
-                        <div id="pengembangan" class="detail-card" role="tabpanel" aria-hidden="true">
-                            <h3>Bidang Pengembangan Ilmu Pengetahuan</h3>
-                            <div class="role-row">
-                                <div class="role">
-                                    <h4>Ketua Bidang</h4>
-                                    <p>Lukman Al-Hakim</p>
-                                </div>
-                                <div class="role">
-                                    <h4>Sekretaris Bidang</h4>
-                                    <p>Violin Tsunade</p>
-                                </div>
-                                <div class="role">
-                                    <h4>Anggota</h4>
-                                    <ul class="anggota-list">
-                                        <li>1. Naufal Azzam Al latif</li>
-                                        <li>2. Mael Adelia Rahmadewi</li>
-                                        <li>3. Amirah Jannah Amalia</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Kajian Dakwah Islam -->
-                        <div id="dakwah" class="detail-card" role="tabpanel" aria-hidden="true">
-                            <h3>Bidang Kajian Dakwah Islam</h3>
-                            <div class="role-row">
-                                <div class="role">
-                                    <h4>Ketua Bidang</h4>
-                                    <p>H. Adam Dzikri F.</p>
-                                </div>
-                                <div class="role">
-                                    <h4>Sekretaris Bidang</h4>
-                                    <p>Siti Nur Halizah</p>
-                                </div>
-                                <div class="role">
-                                    <h4>Anggota</h4>
-                                    <ul class="anggota-list">
-                                        <li>1. Zainul Amir Almajid</li>
-                                        <li>2. Satria Adrian Pratama</li>
-                                        <li>3. Mahira Khaulah Raniyah</li>
-                                        <li>4. M. Rizki Dwi Permana</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- DETAIL BIDANG -->
 
-                        <!-- Seni Budaya & Olahraga -->
-                        <div id="seni" class="detail-card" role="tabpanel" aria-hidden="true">
-                            <h3>Bidang Asosiasi Seni Budaya & Olahraga</h3>
-                            <div class="role-row">
-                                <div class="role">
-                                    <h4>Ketua Bidang</h4>
-                                    <p>Fino Alfian</p>
-                                </div>
-                                <div class="role">
-                                    <h4>Sekretaris Bidang</h4>
-                                    <p>Nayla Tazkiyah N.R</p>
-                                </div>
-                                <div class="role">
-                                    <h4>Anggota</h4>
-                                    <ul class="anggota-list">
-                                        <li>1. Andika Wahyu P.P</li>
-                                        <li>2. M. Afifudin</li>
-                                        <li>3. Fricha Dwi Cahyani</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <div
+                        class="bidang-detail"
+                        id="bidang-detail"
+                        aria-live="polite"
+                    >
 
-                    </div> <!-- bidang-detail -->
-                </div>
-            </div>
-        </section>
 
-        <!-- Info kontak / alamat singkat -->
-        <section class="card" aria-labelledby="kontak-heading">
-            <h2 id="kontak-heading" style="margin-top:0;color:#222;">Kontak & Alamat Sekolah</h2>
-            <p style="margin:6px 0 0;color:var(--muted);">SMAM 8 Sukodadi - Merjoyo,Sukodadi Kec, Sukodadi Kab, Lamongan Prov, Jawa Timur</p>
-            <p style="margin:6px 0 0;color:var(--muted);">Email: adminIpmSmam8 · Telp: +62-851-3712-2268</p>
-        </section>
-    </main>
-
-    <footer class="site" role="contentinfo">
-        © 2025 Ikatan Pelajar Muhammadiyah - SMAM 8 SUKODADI · Semua hak cipta dilindungi
-    </footer>
-
-    <script>
-        // Tampilkan bidang tertentu, sembunyikan yang lain
-        function showBidang(id){
-            // semua detail
-            const panels = document.querySelectorAll('.detail-card');
-            panels.forEach(p => {
-                p.classList.remove('active');
-                p.setAttribute('aria-hidden','true');
-            });
-
-            // aktifkan yang dipilih
-            const sel = document.getElementById(id);
-            if(sel){
-                sel.classList.add('active');
-                sel.setAttribute('aria-hidden','false');
-                // scroll ke area detail (halus)
-                sel.scrollIntoView({behavior:'smooth', block:'center'});
-            }
-        }
-
-        // akses keyboard: tekan angka 1-4 untuk cepat memanggil bidang
-        document.addEventListener('keydown', function(e){
-            if(e.key === '1') showBidang('perkaderan');
-            if(e.key === '2') showBidang('pengembangan');
-            if(e.key === '3') showBidang('dakwah');
-            if(e.key === '4') showBidang('seni');
-        });
-
-        // Optional: tampilkan bidang pertama saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function(){ showBidang('perkaderan'); });
-    </script>
-</body>
-</html>
+                        <!-- PERKA
