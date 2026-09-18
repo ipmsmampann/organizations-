@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Galeri Kegiatan - IPM SMAM 8 Sukodadi</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --yellow: #FFEB3B;
+            --black: #111;
+            --white: #fff;
+            --purple: #6c5ce7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            color: var(--black);
+            background:
+                linear-gradient(
+                    180deg,
+                    var(--yellow) 0%,
+                    var(--yellow) 25%,
+                    var(--white) 25%,
+                    var(--white) 90%,
+                    var(--black) 90%,
+                    var(--black) 100%
+                );
+            min-height: 100vh;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 18px auto;
+            padding: 18px 22px;
+            background: rgba(255,255,255,.9);
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,.12);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            background: white;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .header-text p {
+            margin: 3px 0 0;
+            color: #555;
+            font-size: 13px;
+        }
+
+        .back {
+            text-decoration: none;
+            background: var(--purple);
+            color: white;
+            padding: 9px 14px;
+            border-radius: 9px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 20px auto 60px;
+            padding: 12px;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .title-section h2 {
+            margin-bottom: 5px;
+        }
+
+        .title-section p {
+            margin: 0;
+            color: #555;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .photo {
+            background: white;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,.1);
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .photo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,.15);
+        }
+
+        .photo img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .caption {
+            padding: 10px 4px 4px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 25px;
+        }
+
+        /* Tampilan HP */
+        @media (max-width: 700px) {
+            header {
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .header-text {
+                flex-basis: 100%;
+                order: 2;
+            }
+
+            .back {
+                order: 3;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="smam.png" class="logo" alt="Logo SMAM 8 Sukodadi">
+
+    <div class="header-text">
+        <h1>Galeri Kegiatan</h1>
+        <p>Ikatan Pelajar Muhammadiyah - SMAM 8 Sukodadi</p>
+    </div>
+
+    <a href="index.html" class="back">← Kembali</a>
+
+    <img src="ipm.png" class="logo" alt="Logo IPM">
+</header>
+
+<main>
+
+    <div class="title-section">
+        <h2>Dokumentasi Kegiatan</h2>
+        <p>Dokumentasi kegiatan IPM SMAM 8 Sukodadi</p>
+    </div>
+
+    <div class="gallery">
+
+        <div class="photo">
+            <img src="galeri/kegiatan-1.jpg" alt="Kegiatan IPM 1">
+            <div class="caption">Kegiatan IPM</div>
+        </div>
+
+        <div class="photo">
+            <img src="galeri/kegiatan-2.jpg" alt="Kegiatan IPM 2">
+            <div class="caption">Kegiatan IPM</div>
+        </div>
+
+        <div class="photo">
+            <img src="galeri/kegiatan-3.jpg" alt="Kegiatan IPM 3">
+            <div class="caption">Kegiatan IPM</div>
+        </div>
+
+        <div class="photo">
+            <img src="galeri/kegiatan-4.jpg" alt="Kegiatan IPM 4">
+            <div class="caption">Kegiatan IPM</div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    © 2025 Ikatan Pelajar Muhammadiyah - SMAM 8 SUKODADI
+</footer>
+
+</body>
+</html>
